@@ -4,7 +4,7 @@ namespace Inventory.DAL.ConcreteRepositories
 {
     public abstract class CommonRepository
     {
-        private readonly InventoryDbContext _inventoryDbContext;
+        protected readonly InventoryDbContext _inventoryDbContext;
         public CommonRepository(InventoryDbContext inventoryDbContext)
         {
             _inventoryDbContext = inventoryDbContext;
