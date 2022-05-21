@@ -1,4 +1,5 @@
 ﻿using Inventory.Domain.Abstractions;
+using Inventory.Domain.Models;
 
 namespace Inventory.Service
 {
@@ -11,7 +12,11 @@ namespace Inventory.Service
             _repo = repo;
         }
 
-
         // Implements methods to the Customer service 
+
+        public async Task<bool> AddCustomer(Customer customer) => await _repo.AddCustomer(customer);
+
+        public async Task<List<Customer>> GetCustomersAsync() => await _repo.GetCustomersAsync();
+      
     }
 }
