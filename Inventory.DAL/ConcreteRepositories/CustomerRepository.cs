@@ -1,6 +1,7 @@
 ﻿using Inventory.DAL.Context;
 using Inventory.Domain.Abstractions;
 using Inventory.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.DAL.ConcreteRepositories
 {
@@ -19,5 +20,8 @@ namespace Inventory.DAL.ConcreteRepositories
 
             return await _inventoryDbContext.SaveChangesAsync() > 0;
         }
+
+        public async Task<List<Customer>> GetCustomersAsync() => await _inventoryDbContext.Customers.ToListAsync();
+
     }
 }
