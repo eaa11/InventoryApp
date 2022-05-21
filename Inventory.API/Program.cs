@@ -1,6 +1,7 @@
 using Inventory.DAL.ConcreteRepositories;
 using Inventory.DAL.Context;
 using Inventory.Domain.Abstractions;
+using Inventory.Domain.Models;
 using Inventory.Service;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +34,17 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
+
+app.MapGet("/customer", async(ICustomerService custService) => 
+    await custService.GetCustomersAsync());
+
+app.MapPost("/customer", async (ICustomerService custService, Customer customer) =>
+{
+    await custService.AddCustomer(customer);
+
+    return Results.Ok(await custService.GetCustomersAsync());
+});
+
 
 app.Run();
