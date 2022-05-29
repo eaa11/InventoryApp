@@ -1,4 +1,5 @@
-﻿using Inventory.Domain.Models;
+﻿using Inventory.DAL.Utilities;
+using Inventory.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.DAL.Context
@@ -11,5 +12,25 @@ namespace Inventory.DAL.Context
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // configures one-to-many relationship
+            modelBuilder.Entity<Product>()
+                .HasOne(c => c.Category)
+                .WithMany(p => p.Products)
+                .HasForeignKey(c => c.CategoryId)
+                .IsRequired();
+        }
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            builder.Properties<DateOnly>()
+                .HaveConversion<DateOnlyConverter>()
+                .HaveColumnType("date");
+
+            builder.Properties<DateOnly?>()
+                .HaveConversion<NullableDateOnlyConverter>()
+                .HaveColumnType("date");
+        }
     }
 }
+
