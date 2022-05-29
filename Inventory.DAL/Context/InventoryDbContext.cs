@@ -1,4 +1,5 @@
 ﻿using Inventory.DAL.Utilities;
+using Inventory.Models.Abstractions;
 using Inventory.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,9 @@ namespace Inventory.DAL.Context
 
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // configures one-to-many relationship
