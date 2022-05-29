@@ -1,5 +1,5 @@
 ﻿using Inventory.Domain.Abstractions;
-using Inventory.Domain.Models;
+using Inventory.Models.Domain;
 
 namespace Inventory.Service
 {
