@@ -8,7 +8,7 @@ namespace Inventory.Models.Domain
     {
         [Required]
         [StringLength(12)]
-        [Column("Category Namr")]
+        [Column("Category Name")]
         public string CategoryName { get; set; }
         public string? Description { get; set; }
         public ICollection<Product> Products { get; set; }
