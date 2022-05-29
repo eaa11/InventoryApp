@@ -6,6 +6,9 @@ namespace Inventory.Models.Abstractions
 {
     public abstract class BaseEntity
     {
+        [Key]
+        public int Id { get; set; }
+
         [NotMapped]
         public State State { get; set; }
 
