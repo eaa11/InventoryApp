@@ -1,4 +1,4 @@
-﻿using Inventory.Domain.Models;
+﻿using Inventory.Models.Domain;
 
 namespace Inventory.Domain.Abstractions
 {

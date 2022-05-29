@@ -1,18 +1,26 @@
-﻿using Inventory.Domain.Abstractions;
+﻿using Inventory.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class CustomerController : ControllerBase
+    [Route("api/customers")]
+    public class CustomerController:ControllerBase
     {
-        private readonly ILogger<CustomerController> _logger;
-        private readonly ICustomerService _customerService;
-        public CustomerController(ILogger<CustomerController> logger, ICustomerService customerService)
+
+        [HttpGet]
+        public ActionResult<IEnumerable<CustomerDto>> GetCustomers()
         {
-            _logger = logger;
-            _customerService = customerService;
+            return Ok(CustomerDataStore.Current.Customers);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<CustomerDto> GetCustomer(int id)
+        {
+            var customerToReturn = CustomerDataStore.Current.Customers
+                .FirstOrDefault(c => c.CustomerId == id);
+
+            return customerToReturn == null? NotFound() : Ok(customerToReturn);
         }
     }
 }
