@@ -1,6 +1,6 @@
 ﻿using Inventory.DAL.Context;
 using Inventory.Domain.Abstractions;
-using Inventory.Domain.Models;
+using Inventory.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.DAL.ConcreteRepositories
